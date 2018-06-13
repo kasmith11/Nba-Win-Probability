@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 ```
 
-This model will include a dataset that is available on Fivethirtyeights github page. The code below loads that data and then prints off the first couple of rows from the dataset.
+This model will include a dataset that is available on Fivethirtyeight's github page. The code below loads that data and then prints off the first couple of rows from the dataset.
 
 
 ```python
@@ -25,7 +25,7 @@ The follwing code aims to filter only the data that could be used to predict reg
 df = data.query('year_id >= 2007 & _iscopy == 0 & is_playoffs == 0')
 ```
 
-This model includes a teams points in the previous game (t-1), the amount of points that team allowed in the previous game (t-1), a teams elo rating entering the game, their opponets elo rating entering the game, and finally whether the game was home, away, or neutral. The target variable for the model will be if the team one or lost. 
+This model includes a teams points in the previous game (t-1), the amount of points that team allowed in the previous game (t-1), a team's elo rating entering the game, their opponent's elo rating entering the game, and finally whether the game was home, away, or neutral. The target variable for the model will be if the team won or lost. 
 
 
 ```python
@@ -57,6 +57,8 @@ Next we will create a test train split in order to train on and test the model o
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.30, random_state = 123)
 ```
+
+XGBoost is a tree ensemble model that utilizes a series of classification and regression trees. In order to learn more about XGBoost read the following documentation. https://xgboost.readthedocs.io/en/latest/model.html
 
 
 ```python
@@ -99,6 +101,8 @@ y_pred = pd.DataFrame(WinModel.predict(X_test))
 print(y_pred.head())
 ```
 
+To figure out the accuracy of the model we will use sklearn's accuracy_score function which prints the accuracy of our classification model. http://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html
+
 
 ```python
 from sklearn.metrics import accuracy_score
@@ -113,4 +117,4 @@ y_preds_percent = pd.DataFrame(WinModel.predict_proba(X_test))
 print(y_preds_percent.head())
 ```
 
-If you have any further questions about the code or model above feel free to reach out to me on twitter @kendallasmith_.
+If you have any questions or comments about the code or model above feel free to reach out to me on twitter @kendallasmith_ or email at kendallasmith140@gmail.com.
